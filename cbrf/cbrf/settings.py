@@ -132,5 +132,3 @@ ROLES = [
     ('OWNER', 'Owner'),
     ('ADMIN', 'Admin'),
 ]
-
-AUTH_USER_MODEL = 'users.CustomUser'
