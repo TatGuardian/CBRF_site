@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "rest_framework",
+    'rest_framework',
+    'imagekit',
     'users.apps.UsersConfig',
     'companies.apps.CompaniesConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -131,4 +133,8 @@ ROLES = [
     ('USER', 'User'),
     ('OWNER', 'Owner'),
     ('ADMIN', 'Admin'),
+]
+
+COMPANY_TYPES = [
+    ('Ломбард', 'Ломбард')
 ]
