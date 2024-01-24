@@ -1,7 +1,7 @@
 from django.db import models
 from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFill
-from cbrf.settings import COMPANY_TYPES # Допилить типы
+from cbrf.settings import COMPANY_TYPES  # Допилить типы
 from django.contrib.auth import get_user_model
 
 
@@ -11,7 +11,7 @@ User = get_user_model()
 class Company(models.Model):
     name = models.CharField(
         max_length=50,
-        verbose_name="Наименование компание",
+        verbose_name="Наименование компании",
         help_text="Введите наименование",
     )
     description = models.TextField(

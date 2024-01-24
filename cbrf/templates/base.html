@@ -1,0 +1,18 @@
+<!DOCTYPE html> 
+{% load static %}
+<html lang="ru"> 
+  <head>    
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block title %}
+    {% endblock %} 
+  </head>
+  <body>
+    {% include 'includes/header.html' %}
+    <main>
+      {% block content%}
+      {% endblock %}
+    </main>
+    {% include 'includes/footer.html' %}
+  </body>
+</html>
