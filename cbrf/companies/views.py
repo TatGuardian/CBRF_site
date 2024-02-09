@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from .models import Company
 
 
 def main_page(request):

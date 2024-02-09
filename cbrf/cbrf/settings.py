@@ -128,9 +128,6 @@ ROLES = [
     ('ADMIN', 'Admin'),
 ]
 
-COMPANY_TYPES = [
-    ('Ломбард', 'Ломбард')
-]
 
 TEMPLATES = [
     {
