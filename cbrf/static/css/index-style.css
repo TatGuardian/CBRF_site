@@ -1,0 +1,209 @@
+.body {
+    font-family: 'Golos';
+    font-weight: 400;
+}
+
+.main-block {
+    background-image: url('/static/images/money_pic.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 340px;
+    display: flex;
+    justify-content: left;
+    margin: 1% 2%;
+    position: relative;
+    border-radius: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    font-family: inherit;
+}
+
+.main-block::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.7), transparent); /* Линейный градиент слева направо */
+    border-radius: 10px;
+}
+
+.img-content {
+    padding: 20px;
+    width: 100%;
+    max-width: 600px; /* Максимальная ширина контента */
+    text-align: left;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.img-content h1, .img-content p {
+    color:#fff;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 70%;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.search {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.search:hover {
+    background-color: #0056b3;
+    
+}
+
+.news-container{
+    position: relative;
+    width: 60%;
+    margin-right: 15px;
+    font-family: 'Golos';
+    font-weight: 400;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-left: 20px;
+}
+
+.news-block {
+    margin: 20px;
+    
+}
+
+.news-item {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.news-item img {
+    height: 120px;
+    float: left;
+    margin: 10px;
+}
+
+.news-text h2 {
+    margin-bottom: 10px;
+    font-family: 'Golos';
+    font-weight: 600
+}
+
+.news-text h4 {
+    margin: 0;
+    font-family: 'Golos';
+    font-weight: 500;
+}
+
+.aside {
+    width: 30%;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 60px;
+    text-align: left;
+    justify-content: space-between;
+    border-color: black;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    font-family: 'Golos';
+    font-weight: 400;
+}
+
+.middle-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 40px;
+}
+
+.currency-table {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    text-align: -webkit-center;
+}
+
+.currency-row {
+    display: flex;
+    border-top: 1px solid #ccc;
+}
+
+.currency-cell {
+    flex: 1;
+    padding: 5px 10px;
+    border-right: 1px solid #ccc;
+}
+
+.currency-cell:last-child {
+    border-right: none;
+}
+
+.currency-row.header {
+    font-weight: bold;
+}
+
+.button_calc {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 10px;
+    border-color: black;
+    color: black;
+    font-size: 18px;
+    font-family: 'Golos';
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
+    border: solid;
+    height: 40px;
+}
+
+
+.button_check {
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Golos';
+    font-weight: 500;
+}
+
+.square-blocks {
+    display: flex;
+    flex-direction: row;
+    background-color: #007bff;
+    color: black;
+    border: solid;
+    margin-top: 20px;
+
+}

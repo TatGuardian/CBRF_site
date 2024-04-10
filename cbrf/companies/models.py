@@ -100,7 +100,7 @@ class Organisation(models.Model):
 class Region(models.Model):
     name = models.CharField(
         max_length=150,
-        verbose_name='Город'
+        verbose_name='Регион'
     )
 
     class Meta:

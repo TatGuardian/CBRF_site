@@ -1,0 +1,157 @@
+{% load static%}
+<header>
+    <link rel='stylesheet' href='/static/css/header-stylecss.css'>
+    <link rel='stylesheet' href="/static/css/text.css">
+    <script src='static/javascript/header-style.js'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div class="top-menu">
+        <div class="current-date"><span id="currentDate"></span></div>
+        <button class="briefcase-btn"><i class="fa fa-briefcase" aria-hidden="true"></i>Портфель услуг</button>
+        <div class="social-links">
+            <a href="#" class="social-link">Social Link 1</a>
+            <a href="#" class="social-link">Social Link 2</a>
+        </div>
+    </div>
+    <hr>
+    <div class="navbar">
+        <a href="" class="logo">Небанковский финансовый сектор</a>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown('myDropdown1')">Новости</button>
+            <div class="dropdown-content" id="myDropdown1">
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Все новости</h3>
+                    <p>Сводка последних событий на рынке микрофинансирования</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Интервью</h3>
+                    <p>Беседы с экспертами и представителями финансовой отрасли<p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Аналитические обзоры</h3>
+                    <p>Исследования о текущем состоянии рынка микрофинансирования и перспективах его развития</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Статьи</h3>
+                    <p>Материалы и публикации о небанковском кредитовании<p>
+                    </div>
+                </a>
+            </div>
+            <button class="dropbtn" onclick="toggleDropdown('myDropdown2')">Организации</button>
+            <div class="dropdown-content" id="myDropdown2">
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>МКК</h3>
+                    <p>Список микрокредитных компаний и необходимая информация</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>МФК</h3>
+                    <p>Список микрофинансовых компаний и необходимая информация</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>КПК</h3>
+                    <p>Список кредитных потребительских кооперативов и необходимая информация</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>СКПК</h3>
+                    <p>Список сельскохозяйственных кредитных потребительских кооперативов и необходимая информация<p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Ломбарды</h3>
+                    <p>Список ломбардов и необходимая информация</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Саморегулируемые организации</h3>
+                    <p>Список саморегулируемых организаций и их членов</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Объединения</h3>
+                    <p>Лига ломбардов, союзы кредитных кооперативов и ассоциации участников рынка микрофинансирования</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Бюро кредитных историй</h3>
+                    <p>Проверка кредитной истории</p>
+                    </div>
+                </a>
+            </div>
+            <button class="dropbtn" onclick="toggleDropdown('myDropdown3')">Продукты и услуги</button>
+            <div class="dropdown-content" id="myDropdown3">
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Займы</h3>
+                    <p>Подобрать заем на подходящих условиях</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Инвестиции</h3>
+                    <p>Подобрать предложения по инвестициям и сбережениям <p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Кредитный калькулятор</h3>
+                    <p>Рассчитать ежемесячный платеж и узнать полную стоимость займа</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Депозитный калькулятор</h3>
+                    <p>Рассчитать доходность по инвестициям и сбережениям<p>
+                    </div>
+                </a>
+            </div>
+            <button class="dropbtn" onclick="toggleDropdown('myDropdown4')">Регулирование</button>
+            <div class="dropdown-content" id="myDropdown4">
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Госреестры организаций</h3>
+                    <p>Список легальных участников рынка микрофинансирования</p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Федеральные законы и нормативно-правовые акты</h3>
+                    <p>Официальные документы и информация о регулировании рынка<p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Базовые стандарты</h3>
+                    <p>Утвержденные Банком России стандарты деятельности финансовых организаций </p>
+                    </div>
+                </a>
+                <a href="#">
+                    <div class="dropdown-item">
+                    <h3>Ключевая информация для потребителя</h3>
+                    <p>Все, что необходимо знать перед обращением в организацию<p>
+                    </div>
+                </a>
+            </div>
+            <a href="faq.html" class="dropbtn">FAQ</a>
+        </div>
+        <button class="legal-btn" onclick= "window.location.href='#'">Юридическим лицам</button>
+    </div>
+    <!-- <div class="overlay" id="overlay"></div> -->
+</header> 
