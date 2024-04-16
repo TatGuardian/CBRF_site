@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import News
+from companies.models import Product
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import requests
@@ -7,7 +8,7 @@ import requests
 
 def main_page(request):
     img_news = News.objects.exclude(image=None).order_by('-date')[:1]
-    non_img_news = News.objects.exclude(id__in=[news.id for news in img_news] or image!=None).order_by('-date')[:2]
+    non_img_news = News.objects.exclude(id__in=[news.id for news in img_news] or news.image!=None).order_by('-date')[:2]
     news = list(img_news) + list(non_img_news)
 
     cbr_data = get_cbr_data(url = 'https://cbr.ru')
@@ -19,7 +20,9 @@ def main_page(request):
 
     exchange_rates_data = get_cbr_rates_data(url = 'https://cbr.ru')
 
-    return render(request, 'index.html', {'news': news, 'cbr_data': translated_data, 'exchange_rates_data': exchange_rates_data})
+    products = Product.objects.order_by('?')[:4]
+
+    return render(request, 'index.html', {'news': news, 'cbr_data': translated_data, 'exchange_rates_data': exchange_rates_data, 'products': products})
 
 def get_cbr_data(url):
     response = requests.get(url)

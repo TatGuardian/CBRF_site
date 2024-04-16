@@ -31,7 +31,9 @@
                 <div class="news-text">
                     <h2>{{ item.title }}</h2>
                     <h4>{{ item.date|date:"d.m.Y"}}</h4>
-                    <p>{{ item.text |truncatechars:400 }}</p>
+                    <p class="short-text">{{ item.text |truncatechars:400 }}</p>
+                    <p class="full-text" style="display: none;">{{ item.text }}</p>
+                    <button class="hide-btn" style="display: none;">Скрыть</button>
                 </div>
             </div>
             {% endfor %}
@@ -63,15 +65,42 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="button_calc"><i class="fa fa-credit-card" aria-hidden="true"></i>Кредитный калькулятор</a>
-            <a href="#" class="button_calc"><i class="fa fa-credit-card" aria-hidden="true"></i>Депозитный калькулятор</a>
+            <a href="#" class="button_calc"><i class="fa fa-credit-card" aria-hidden="true" style="font-size: 2em;"></i>Кредитный калькулятор</a>
+            <a href="#" class="button_calc"><i class="fa fa-calculator" aria-hidden="true" style="font-size: 2em;"></i>Депозитный калькулятор</a>
             <a href="#" class="button_check">Проверить свою кредитную историю</a>
             <div class="square-blocks">
-                <a href="#" class="square">Займы</a>
-                <a href="#" class="square">Сбережения</a>
-                <a href="#" class="square">Рейтинг</a>
+                <a href="#" class="square"><i class="fa fa-credit-card" aria-hidden="true"  style="font-size: 2.5em;"></i>Займы</a>
+                <a href="#" class="square"><i class="fa fa-credit-card" aria-hidden="true" style="font-size: 2.5em;"></i>Сбережения</a>
+                <a href="#" class="square"><i class="fa fa-list-ol" aria-hidden="true" style="font-size: 2.5em;"></i>Рейтинг</a>
             </div>
         </div>
     </div>
+    <div class="offer-container">
+        {% for product in products %}
+        <div class="offer-block">
+            <span class="company">{{ product.filial_id.organisation_id.brand_name }}</span>
+            <hr>
+            <h4>{{ product.name }}</h4>
+            <hr>
+            <p>{{ product.params }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="faq-container">
+        <h2>Часто задаваемые вопросы</h2>
+        <div class="faq-item">
+            <div class="question"><i class="fa fa-angle-down" aria-hidden="true" style="font-size: 2em;"></i>Вопрос 1</div>
+            <div class="answer">Ответ на вопрос 1</div>
+        </div>
+        <div class="faq-item">
+            <div class="question"><i class="fa fa-angle-down" aria-hidden="true" style="font-size: 2em;"></i>Вопрос 2</div>
+            <div class="answer">Ответ на вопрос 2</div>
+        </div>
+        <div class="faq-item">
+            <div class="question"><i class="fa fa-angle-down" aria-hidden="true" style="font-size: 2em;"></i>Вопрос 3</div>
+            <div class="answer">Ответ на вопрос 3</div>
+        </div>
+    </div>
+    {% include 'includes/footer.html' %}
 </body>
 </html>

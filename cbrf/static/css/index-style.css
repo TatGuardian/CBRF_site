@@ -106,9 +106,16 @@ input[type="text"] {
 }
 
 .news-text h4 {
-    margin: 0;
+    margin-top: 16px;
+    margin-bottom: 16px;
     font-family: 'Golos';
     font-weight: 500;
+}
+
+.clickable {
+    cursor: pointer;
+    color: blue;
+    text-decoration: none;
 }
 
 .aside {
@@ -139,6 +146,7 @@ input[type="text"] {
     border: 1px solid #ccc;
     border-collapse: collapse;
     text-align: -webkit-center;
+    font-size: 18px;
 }
 
 .currency-row {
@@ -164,17 +172,17 @@ input[type="text"] {
     display: inline-flex;
     align-items: center;
     justify-content: space-evenly;
-    margin-top: 10px;
+    margin-top: 20px;
     border-color: black;
     color: black;
-    font-size: 18px;
+    font-size: 20px;
     font-family: 'Golos';
     font-weight: 500;
     text-decoration: none;
     border-radius: 10px;
     cursor: pointer;
     border: solid;
-    height: 40px;
+    height: 50px;
 }
 
 
@@ -189,7 +197,7 @@ input[type="text"] {
     border: none;
     background-color: #007bff;
     color: #fff;
-    font-size: 16px;
+    font-size: 20px;
     text-decoration: none;
     border-radius: 10px;
     cursor: pointer;
@@ -199,11 +207,87 @@ input[type="text"] {
 }
 
 .square-blocks {
-    display: flex;
-    flex-direction: row;
-    background-color: #007bff;
-    color: black;
-    border: solid;
     margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+}
 
+.square {
+    background-color: white;
+    color: black;
+    font-family: 'Golos';
+    font-weight: 300;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+}
+
+.hide-btn {
+    background-color: white;
+    border: 0.02rem solid;
+    border-radius: 5px;
+
+}
+
+.offer-container {
+    border: solid 0.1em #000000;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 100px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.offer-block {
+    width: 25%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: solid #0056b3 0.1em;
+    border-radius: 15px;
+    margin: 10px;
+    font-family: 'Golos';
+}
+
+.company {
+    font-weight: bold;
+}
+
+.faq-container {
+    text-align: center;
+}
+
+.faq-item {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 10px;
+}
+
+.question {
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.answer {
+    display: none;
+    margin-top: 10px;
+}
+
+.fa-angle-down {
+    float: right;
+}
+
+.answer.show {
+    display: block;
 }

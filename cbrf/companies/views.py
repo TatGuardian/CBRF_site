@@ -1,14 +1,14 @@
 from django.shortcuts import render
+from .models import Product
 
 
 def main_page(request):
-    template = "index.html"
-    return render(request, template)
-
-def organizations_page(request):
-    template = "organizations.html"
-    return render(request, template)
+    return None
 
 def faq_page(request):
     template = "faq.html"
     return render(request, template)
+
+
+    
+
