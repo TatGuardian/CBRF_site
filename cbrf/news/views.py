@@ -1,4 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .forms import FeedbackForm
+from .utils import send_email_to_organization
 from .models import News
 from companies.models import Product
 from urllib.request import urlopen
@@ -60,3 +63,16 @@ def get_cbr_rates_data(url):
             data[currency_name] = (y_rate, t_rate)
 
     return data
+
+def feedback(request):
+    if request.method == 'POST':
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            feedback = form.save()
+            if feedback.send_to_email:
+                send_email_to_organization(feedback)
+                messages.success(request, 'Форма успешно отправлена!')
+            return redirect('index.html')  # Перенаправление на страницу успешного отправления
+    else:
+        form = FeedbackForm()
+    return render(request, 'index.html', {'form': form})

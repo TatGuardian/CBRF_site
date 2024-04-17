@@ -1,4 +1,5 @@
 from django.db import models
+from companies.models import Organisation
 
 
 class NewsCategories(models.Model):
@@ -69,3 +70,16 @@ class News_Tags(models.Model):
         Tags,
         on_delete=models.CASCADE
     )
+
+class Feedback(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    patronimic_name = models.CharField(max_length=100)
+    contract_number = models.CharField(max_length=50)
+    contract_date = models.DateField()
+    message = models.TextField()
+    organization = models.ForeignKey(Organisation, on_delete=models.CASCADE)
+    send_to_email = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Обратная связь по организации {self.organization}"

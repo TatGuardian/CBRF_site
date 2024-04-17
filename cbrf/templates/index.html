@@ -101,6 +101,14 @@
             <div class="answer">Ответ на вопрос 3</div>
         </div>
     </div>
+    <div class="contact_form">
+        <h3>Feedback Form</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
     {% include 'includes/footer.html' %}
 </body>
 </html>
