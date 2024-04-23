@@ -25,7 +25,9 @@ def main_page(request):
 
     products = Product.objects.order_by('?')[:4]
 
-    return render(request, 'index.html', {'news': news, 'cbr_data': translated_data, 'exchange_rates_data': exchange_rates_data, 'products': products})
+    form = feedback(request)
+
+    return render(request, 'index.html', {'news': news, 'cbr_data': translated_data, 'exchange_rates_data': exchange_rates_data, 'products': products, 'form': form})
 
 def get_cbr_data(url):
     response = requests.get(url)
@@ -75,4 +77,4 @@ def feedback(request):
             return redirect('index.html')  # Перенаправление на страницу успешного отправления
     else:
         form = FeedbackForm()
-    return render(request, 'index.html', {'form': form})
+    return form

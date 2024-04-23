@@ -101,12 +101,32 @@
             <div class="answer">Ответ на вопрос 3</div>
         </div>
     </div>
-    <div class="contact_form">
-        <h3>Feedback Form</h3>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
+    <div class="form-container">
+        <h3>Форма обратной связи</h3>
+        <p>{{ form.send_to_email }}Поделиться информацией с финансовой организацией</p>
+        <form method="post" class="feedback" style="display: grid;">
+            <div class="name-fields">
+                {% csrf_token %}
+                <p>Фамилия</p>
+                {{ form.last_name }}
+                <p>Имя</p>
+                {{ form.first_name }}
+                <p>Отчество</p>
+                {{ form.patronimic_name }}
+            </div>
+            <div class="organization-fields">
+                <p>Укажите организацию</p>
+                {{ form.organization }}
+                <p>Номер договора</p>
+                {{ form.contract_number }}
+                <p>Дата договора</p>
+                {{ form.contract_date }}
+            </div>
+            <div class="message-field">
+                <p>Оставьте Ваш комментарий</p>
+                {{ form.message }}
+                <button type="submit">Submit</button>
+            </div>
         </form>
     </div>
     {% include 'includes/footer.html' %}

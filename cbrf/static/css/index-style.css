@@ -236,7 +236,7 @@ input[type="text"] {
     border: solid 0.1em #000000;
     margin-top: 20px;
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 40px;
     margin-right: 100px;
     border-radius: 10px;
     display: flex;
@@ -290,4 +290,32 @@ input[type="text"] {
 
 .answer.show {
     display: block;
+}
+
+.form-container {
+    display: grid;
+    grid-template-rows: repeat(2, 2fr);
+    background-color: #f0f0f0;
+    margin: 10px 60px 10px 40px;
+}
+
+.feedback {
+    display: grid;
+    grid-template-areas:"a a a b b b c c c";
+    grid-gap: 10px;
+}
+
+.name-fields {
+    display: grid;
+    grid-area: a;
+}
+
+.organization-fields {
+    display: grid;
+    grid-area: b;
+}
+
+.message-field {
+    display: grid;
+    grid-area: c;
 }

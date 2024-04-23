@@ -1,4 +1,5 @@
 from django.db import models
+from .validators import MinValueValidator
 
 
 class ProductClass(models.Model):
@@ -8,9 +9,9 @@ class ProductClass(models.Model):
     )
 
     class Meta:
-        ordering = ["name"]
-        verbose_name = "Тип продукта"
-        verbose_name_plural = "Типы продуктов"
+        ordering = ['name']
+        verbose_name = 'Тип продукта'
+        verbose_name_plural = 'Типы продуктов'
 
     def __str__(self):
         return self.name
@@ -23,9 +24,9 @@ class OrganisationType(models.Model):
     )
 
     class Meta:
-        ordering = ["name"]
-        verbose_name = "Тип"
-        verbose_name_plural = "Типы"
+        ordering = ['name']
+        verbose_name = 'Тип'
+        verbose_name_plural = 'Типы'
 
     def __str__(self):
         return self.name
@@ -48,9 +49,9 @@ class ProductType(models.Model):
     )
 
     class Meta:
-        ordering = ["name"]
-        verbose_name = "Тип продукта"
-        verbose_name_plural = "Типы продуктов"
+        ordering = ['name']
+        verbose_name = 'Тип продукта'
+        verbose_name_plural = 'Типы продуктов'
 
     def __str__(self):
         return self.name
@@ -59,21 +60,21 @@ class ProductType(models.Model):
 class Organisation(models.Model):
     name_short = models.CharField(
         max_length=50,
-        verbose_name="Короткое наименование компании"
+        verbose_name='Краткое наименование компании'
     )
-    name_long = models.CharField(
+    name_full = models.CharField(
         max_length=500,
-        verbose_name="Полное наименование компании"
+        verbose_name='Полное наименование компании'
     )
     brand_name = models.CharField(
         max_length=250,
-        verbose_name="Бренд"
+        verbose_name='Бренд'
     )
     inn = models.IntegerField(
-        verbose_name="ИНН"
+        verbose_name='ИНН'
     )
     ogrn = models.IntegerField(
-        verbose_name="ОГРН"
+        verbose_name='ОГРН'
     )
     location_reg = models.CharField(
         max_length=550,
@@ -87,11 +88,13 @@ class Organisation(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Тип организации'
     )
+    email = models.EmailField(verbose_name='Электронная почта организации')
+    phone = models.CharField(verbose_name='Телефон организации')
 
     class Meta:
-        ordering = ["id"]
-        verbose_name = "Организация"
-        verbose_name_plural = "Организации"
+        ordering = ['id']
+        verbose_name = 'Организация'
+        verbose_name_plural = 'Организации'
 
     def __str__(self):
         return self.name_short
@@ -104,9 +107,9 @@ class Region(models.Model):
     )
 
     class Meta:
-        ordering = ["name"]
-        verbose_name = "Регион"
-        verbose_name_plural = "Регионы"
+        ordering = ['name']
+        verbose_name = 'Регион'
+        verbose_name_plural = 'Регионы'
 
 
 class City(models.Model):
@@ -121,9 +124,9 @@ class City(models.Model):
     )
 
     class Meta:
-        ordering = ["name"]
-        verbose_name = "Город"
-        verbose_name_plural = "Города"
+        ordering = ['name']
+        verbose_name = 'Город'
+        verbose_name_plural = 'Города'
 
 
 class Filial(models.Model):
@@ -134,16 +137,16 @@ class Filial(models.Model):
     )
     location_fact = models.CharField(
         max_length=500,
-        verbose_name="Местонахождение филиала"
+        verbose_name='Местонахождение филиала'
     )
     email = models.EmailField(
-        verbose_name="Е-мейл"
+        verbose_name='Электронная почта филиала'
     )
     schedule = models.JSONField(
-        verbose_name="Расписание"
+        verbose_name='Расписание филиала'
     )
     phone = models.IntegerField(
-        verbose_name="Номер телефона"
+        verbose_name='Номер телефона филиала'
     )
     city_id = models.ForeignKey(
         City,
@@ -152,12 +155,25 @@ class Filial(models.Model):
     )
 
     class Meta:
-        ordering = ["organisation_id"]
-        verbose_name = "Филиал"
-        verbose_name_plural = "Филиалы"
+        ordering = ['organisation_id']
+        verbose_name = 'Филиал'
+        verbose_name_plural = 'Филиалы'
 
 
 class Product(models.Model):
+    METHOD = (
+        ('Online', 'Онлайн'),
+        ('Offline','Офлайн'),
+    )
+
+    FREQUENCY = (
+        ('monthly', 'Ежемесячно'),
+        ('annually', 'Ежегодно'),
+        ('quater', 'Ежеквартально'),
+        ('end', 'В конце срока'),
+        ('other', 'Иное'),
+    )
+
     filial_id = models.ForeignKey(
         Filial,
         on_delete=models.CASCADE,
@@ -165,22 +181,39 @@ class Product(models.Model):
     )
     name = models.CharField(
         max_length=500,
-        verbose_name="Название продукта"
+        verbose_name='Название продукта'
     )
     product_type_id = models.ForeignKey(
         ProductType,
         on_delete=models.CASCADE,
         verbose_name='Тип продукта'
     )
-    params = models.CharField(
-        max_length=250,
-        verbose_name="Другие параметры"
-    )
+    amount_min = models.IntegerField(verbose_name='Минимальная сумма предложения')
+    amount_max = models.IntegerField(verbose_name='Максимальная сумма предложения')
+    term = models.IntegerField(verbose_name='Срок в днях')
+    rate = models.FloatField(
+        validators=[MinValueValidator(0)],
+        verbose_name='Ставка процента'
+        )
+    method_reg = models.CharField(choices=METHOD, verbose_name='Метод оформления')
+    insurance = models.BooleanField(
+        verbose_name='Наличие или отсутствие страхования'
+        )
+    interest_payment = models.FloatField(
+        verbose_name='Сумма, которую составит регулярная выплата процентов'
+        )
+    age_min = models.IntegerField(verbose_name='Минимальный возраст') # нужно ли вообще
+    frequency_payment = models.CharField(
+        choices=FREQUENCY,
+        verbose_name='Частота выплат'
+        )
+    purpose = models.CharField(max_length=100, verbose_name='Цель')
+
 
     class Meta:
-        ordering = ["id"]
-        verbose_name = "Продукт"
-        verbose_name_plural = "Продукты"
+        ordering = ['id']
+        verbose_name = 'Продукт'
+        verbose_name_plural = 'Продукты'
 
     def __str__(self):
         return self.name
