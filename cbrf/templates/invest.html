@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    {% load static%}
+    <link rel='stylesheet' href="{% static 'css/invest.css' %}">
+    <script src="{% static 'javascript/invest.js' %}"></script>
+    <title>Инвестиции в МФО</title>
+</head>
+
+<body>
+    {% include 'includes/header-main.html' %}
+    <div class="place">
+        <h2>Инвестиции в МФО в <span style="color: blue;">{{ city }}</span></h2>
+    </div>
+    <div class="filters">
+        <div id="method-buttons">
+            <button id="Online" class="method-button active" onclick="toggleMethod('Online')">Онлайн</button>
+            <button id="Offline" class="method-button" onclick="toggleMethod('Offline')">Офлайн</button>
+        </div>
+        <div class="amount">
+            <label for="amount">Сумма вложений</label>
+            <div class="amount-input">
+                <input type="number" id="amount" name="amount" placeholder="от 1.5 млн руб.">
+            </div>
+        </div>
+        <div class="term">
+            <label for="term">Срок инвестирования</label>
+            <div class="term-input">
+                <select id="term-unit" name="term-unit">
+                    <option value="any" selected>Любой</option>
+                    <option value="3months">3 месяца</option>
+                    <option value="6months">6 месяцев</option>
+                    <option value="12months">1 год</option>
+                    <option value="18months">18 месяцев</option>
+                    <option value="24months">2 года</option>
+                    <option value="36months">3 года</option>
+                </select>
+            </div>
+        </div>
+        <div class="interest">
+            <label for="interest">Выплата процентов</label>
+            <div class="interest-input">
+                <select id="interest-unit" name="interest-unit">
+                    <option value="any" selected>Не важно</option>
+                    <option value="monthly">Ежемесячно</option>
+                    <option value="quaterly">Ежеквартально</option>
+                    <option value="annually">Ежегодно</option>
+                    <option value="end">В конце срока</option>
+                </select>
+            </div>
+        </div>
+        <button class="apply-filters" onclick="applyFilters()">Применить фильтры</button>
+    </div>
+</body>
+</html>

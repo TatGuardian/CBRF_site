@@ -1,5 +1,5 @@
 from django.db import models
-from .validators import MinValueValidator
+from django.core.validators import MinValueValidator, RegexValidator, MinLengthValidator, MaxLengthValidator
 
 
 class ProductClass(models.Model):
@@ -10,8 +10,8 @@ class ProductClass(models.Model):
 
     class Meta:
         ordering = ['name']
-        verbose_name = 'Тип продукта'
-        verbose_name_plural = 'Типы продуктов'
+        verbose_name = 'Класс продукта (заем\инвестиции)'
+        verbose_name_plural = 'Классы продуктов (заем\инвестиции)'
 
     def __str__(self):
         return self.name
@@ -25,8 +25,8 @@ class OrganisationType(models.Model):
 
     class Meta:
         ordering = ['name']
-        verbose_name = 'Тип'
-        verbose_name_plural = 'Типы'
+        verbose_name = 'Тип организации'
+        verbose_name_plural = 'Типы организаций'
 
     def __str__(self):
         return self.name
@@ -70,15 +70,21 @@ class Organisation(models.Model):
         max_length=250,
         verbose_name='Бренд'
     )
-    inn = models.IntegerField(
-        verbose_name='ИНН'
+    inn = models.CharField(
+        verbose_name='ИНН',
+        unique=True,
+        validators=[MaxLengthValidator(10), MinLengthValidator(10)],
+        max_length=10
     )
-    ogrn = models.IntegerField(
-        verbose_name='ОГРН'
+    ogrn = models.CharField(
+        verbose_name='ОГРН',
+        unique=True,
+        validators=[MaxLengthValidator(13), MinLengthValidator(13)],
+        max_length=13
     )
     location_reg = models.CharField(
         max_length=550,
-        verbose_name='Местонахождение'
+        verbose_name='Место регистрации организации'
     )
     date_reg = models.DateField(
         verbose_name='Дата регистрации'
@@ -88,8 +94,8 @@ class Organisation(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Тип организации'
     )
-    email = models.EmailField(verbose_name='Электронная почта организации')
-    phone = models.CharField(verbose_name='Телефон организации')
+    email = models.EmailField(verbose_name='Электронная почта организации', blank=True)
+    phone = models.CharField(verbose_name='Телефон организации', max_length=20, blank=True)
 
     class Meta:
         ordering = ['id']
@@ -137,7 +143,7 @@ class Filial(models.Model):
     )
     location_fact = models.CharField(
         max_length=500,
-        verbose_name='Местонахождение филиала'
+        verbose_name='Фактическое метоположение филиала'
     )
     email = models.EmailField(
         verbose_name='Электронная почта филиала'
@@ -188,26 +194,33 @@ class Product(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Тип продукта'
     )
-    amount_min = models.IntegerField(verbose_name='Минимальная сумма предложения')
-    amount_max = models.IntegerField(verbose_name='Максимальная сумма предложения')
-    term = models.IntegerField(verbose_name='Срок в днях')
+    amount_min = models.IntegerField(verbose_name='Минимальная сумма предложения', blank=True, null=True)
+    amount_max = models.IntegerField(verbose_name='Максимальная сумма предложения', blank=True, null=True)
+    term_min = models.IntegerField(verbose_name='Срок в днях, минимальный', blank=True, null=True)
+    term_max = models.IntegerField(verbose_name='Срок в днях, максимальный', blank=True, null=True)
     rate = models.FloatField(
         validators=[MinValueValidator(0)],
-        verbose_name='Ставка процента'
+        verbose_name='Ставка процента',
+        blank=True, null=True
         )
-    method_reg = models.CharField(choices=METHOD, verbose_name='Метод оформления')
+    method_reg = models.CharField(choices=METHOD, verbose_name='Метод оформления', max_length=20, default='Offline')
     insurance = models.BooleanField(
-        verbose_name='Наличие или отсутствие страхования'
+        verbose_name='Наличие или отсутствие страхования',
+        blank=True, null=True
         )
     interest_payment = models.FloatField(
-        verbose_name='Сумма, которую составит регулярная выплата процентов'
+        verbose_name='Сумма, которую составит регулярная выплата процентов',
+        blank=True, null=True
         )
-    age_min = models.IntegerField(verbose_name='Минимальный возраст') # нужно ли вообще
+    age_min = models.IntegerField(verbose_name='Минимальный возраст', blank=True, default=18) # нужно ли вообще
     frequency_payment = models.CharField(
         choices=FREQUENCY,
-        verbose_name='Частота выплат'
+        verbose_name='Частота выплат',
+        max_length=20,
+        blank=True, null=True
         )
-    purpose = models.CharField(max_length=100, verbose_name='Цель')
+    purpose = models.CharField(max_length=100, verbose_name='Цель',
+    blank=True, null=True)
 
 
     class Meta:

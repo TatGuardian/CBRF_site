@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    {% load static%}
+    <link rel='stylesheet' href="{% static 'css/loans.css' %}">
+    <script src="{% static 'javascript/loans.js' %}"></script>
+    <title>Подобрать займ</title>
+</head>
+
+<body>
+    {% include 'includes/header-main.html' %}
+    <div class="place">
+        <h2>Подобрать займ в <span style="color: blue;">{{ city }}</span></h2>
+    </div>
+    <div class="filters">
+        <div id="method-buttons">
+            <button id="Online" class="method-button active" onclick="toggleMethod('Online')">Онлайн</button>
+            <button id="Offline" class="method-button" onclick="toggleMethod('Offline')">Офлайн</button>
+        </div>
+        <div class="amount">
+            <label for="amount">Сумма займа</label>
+            <div class="amount-input">
+                <input type="number" id="amount" name="amount" style="background-color: #e4e2e2;">
+            </div>
+        </div>
+        <div class="term">
+            <label for="term">Срок займа:</label>
+            <div class="term-input">
+                <input type="number" id="term" name="term" style="background-color: #e4e2e2;">
+                <select id="term-unit" name="term-unit">
+                    <option value="days">дни</option>
+                    <option value="months">месяцы</option>
+                </select>
+            </div>
+        </div>
+        <button class="apply-filters" onclick="applyFilters()">Применить фильтры</button>
+    </div>
+    
+    <div class="products">
+            {% for product in products %}
+                <div class="item">
+                    <h3><i class="fa fa-vk" aria-hidden="true" style="font-size: 1.5em;"></i>{{ product.name }}</h3>
+                    <hr>
+                    <p>Сумма: {{product.amount_min}}-{{product.amount_max}} <i class="fa fa-rub" aria-hidden="true"></i></p>
+                    <p>Срок: {{ product.term_min }}-{{ product.term_max }} дн.</p>
+                    <p>Ставка процента: {{product.rate| floatformat}}% годовых</p>
+
+                </div>
+            {% endfor %}
+    </div>
+    {% include 'includes/footer.html' %}
+</body>

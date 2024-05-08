@@ -1,8 +1,8 @@
 {% load static%}
 <header>
-    <link rel='stylesheet' href='/static/css/header-stylecss.css'>
+    <link rel='stylesheet' href="{% static 'css/header-stylecss.css' %}">
     <link rel='stylesheet' href="/static/css/text.css">
-    <script src='static/javascript/header-style.js'></script>
+    <script src="{% static 'javascript/header-style.js' %}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <div class="top-menu">
@@ -15,14 +15,14 @@
     </div>
     <hr>
     <div class="navbar">
-        <a href="" class="logo">Небанковский финансовый сектор</a>
+        <a href="/" class="logo">Небанковский финансовый сектор</a>
         <div class="dropdown">
             <button class="dropbtn" onclick="toggleDropdown('myDropdown1')">Новости</button>
             <div class="dropdown-content" id="myDropdown1">
                 <a href="#">
                     <div class="dropdown-item">
-                    <h3>Все новости</h3>
-                    <p>Сводка последних событий на рынке микрофинансирования</p>
+                        <h3>Все новости</h3>
+                        <p>Сводка последних событий на рынке микрофинансирования</p>
                     </div>
                 </a>
                 <a href="#">
@@ -97,13 +97,13 @@
             </div>
             <button class="dropbtn" onclick="toggleDropdown('myDropdown3')">Продукты и услуги</button>
             <div class="dropdown-content" id="myDropdown3">
-                <a href="#">
+                <a href="loans.html">
                     <div class="dropdown-item">
                     <h3>Займы</h3>
                     <p>Подобрать заем на подходящих условиях</p>
                     </div>
                 </a>
-                <a href="#">
+                <a href="invest.html">
                     <div class="dropdown-item">
                     <h3>Инвестиции</h3>
                     <p>Подобрать предложения по инвестициям и сбережениям <p>

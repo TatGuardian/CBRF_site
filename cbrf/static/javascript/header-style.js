@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Добавляем ведущие нули к минутам, если они меньше 10
         minutes = (minutes < 10 ? '0' : '') + minutes;
         
-        var currentTimeString = dayOfWeek + ', ' + dayOfMonth + ' ' + month + ' ' + year + ' '  + hours + ':' + minutes + ' (МСК)';
+        var currentTimeString = dayOfWeek + ', ' + dayOfMonth + ' ' + month + ' ' + year + ' '  + hours + ':' + minutes + ' (мск)';
         
         currentDateElement.textContent = currentTimeString;
     }
